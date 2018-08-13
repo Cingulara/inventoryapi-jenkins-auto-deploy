@@ -1,0 +1,14 @@
+version : '3'
+ 
+services:
+  inventoryapi:
+    image: inventoryapi
+    ports:
+      - 9002:8080
+    depends_on:
+      - inventoryapidb
+  
+  inventoryapidb:
+    image: inventoryapidb
+    ports:
+      - 5432

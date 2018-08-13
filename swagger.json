@@ -1,0 +1,182 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Inventory API using Node.js and PostgreSQL",
+      "description": "This is an Inventory API showing microservices using different languages and database backends.",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "tags": [
+      {
+        "name": "Inventory",
+        "description": "API for inventory in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/inventory": {
+        "post": {
+          "tags": [
+            "Inventory"
+          ],
+          "description": "Create new inventory item in system",
+          "parameters": [
+            {
+              "name": "inventory",
+              "in": "body",
+              "description": "Inventory Item that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Inventory"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Inserted one Inventory Item",
+              "schema": {
+                "$ref": "#/definitions/Inventory"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Inventory"
+          ],
+          "summary": "Get all Inventory items in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Inventories"
+              }
+            }
+          }
+        }
+      },
+      "/inventory/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of inventory item that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Inventory"
+          ],
+          "summary": "Get inventory item with given Id",
+          "responses": {
+            "200": {
+              "description": "Retrieved one Inventory Item",
+              "schema": {
+                "$ref": "#/definitions/Inventory"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete inventory item with given Id",
+          "tags": [
+            "Inventory"
+          ],
+          "responses": {
+            "200": {
+              "description": "Inventory Item is deleted",
+              "schema": {
+                "$ref": "#/definitions/Inventory"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update inventory with given Id",
+          "tags": [
+            "Inventory"
+          ],
+          "parameters": [
+            {
+              "name": "inventory",
+              "in": "body",
+              "description": "Inventory with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Inventory"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Inventory item is updated",
+              "schema": {
+                "$ref": "#/definitions/Inventory"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Inventory": {
+        "required": [
+          "name",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "saleprice": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "active": {
+            "type": "number"
+          },
+          "company": {
+            "type": "number"
+          },
+          "created": {
+            "type": "string"
+          },
+          "updated": {
+            "type": "string"
+          }
+        }
+      },
+      "Inventories": {
+        "type": "array",
+        "$ref": "#/definitions/Inventory"
+      }
+    }
+  }
