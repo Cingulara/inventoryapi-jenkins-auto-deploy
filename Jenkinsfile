@@ -2,7 +2,6 @@ def CONTAINER_NAME="inventory-api-pipeline"
 def CONTAINER_TAG="latest"
 def OPENSHIFT_PROJECT_NAME="inventory-api-pipeline"
 dev OPENSHIFT_IP="172.30.1.1:5000"
-def DOCKER_HUB_USER="dalebingham"
 
 node {
 
@@ -37,11 +36,6 @@ node {
             pushToImage(OPENSHIFT_IP,OPENSHIFT_PROJECT_NAME, CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
         }
     }
-
-    stage('Run App'){
-        runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
-    }
-
 }
 
 def imagePrune(containerName){
