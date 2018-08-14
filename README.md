@@ -1,7 +1,7 @@
 # Client API using NodeJS and PostgreSQL
 This is a single Node API microservice with PostgreSQL backend as a POC. It is to show how to do a single API around a particular domain with a database that is its own in a separate programming language and database server. This requires Docker, NodeJS v 10.0 or later, and a web browser to run. Optionally you can use a SQL tool such as pgAdmin 4 to view the database if you so desire.
 
-There is a docker-compose YAML file in here to bring up both containers correctly once they are built. 
+There is a docker-compose YAML file in here to bring up both containers correctly once they are built. And the Jenkinsfile is setup to deploy to OpenShift automatically.
 
 ## Run the NodeJS Container
 * run 'docker build -t inventoryapi .' from the inventoryapi directory to build the image
