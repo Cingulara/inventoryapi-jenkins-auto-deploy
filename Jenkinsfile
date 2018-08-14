@@ -17,7 +17,7 @@ node {
 
     stage('SonarQube'){
         try {
-            bat "c:\projects\sonar-scanner\bin\sonar-scanner -Dsonar.projectKey=inventoryapi -Dsonar.sources=."
+            bat "c:\\projects\\sonar-scanner\\bin\\sonar-scanner -Dsonar.projectKey=inventoryapi -Dsonar.sources=."
         } catch(error){
             echo "The sonar server could not be reached ${error}"
         }
