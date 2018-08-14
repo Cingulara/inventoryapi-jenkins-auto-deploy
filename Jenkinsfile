@@ -40,19 +40,19 @@ node {
 
 def imagePrune(containerName){
     try {
-        sh "docker image prune -f"
-        sh "docker stop $containerName"
+        bat "docker image prune -f"
+        bat "docker stop $containerName"
     } catch(error){}
 }
 
 def imageBuild(containerName, tag){
-    sh "docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
+    bat "docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
     echo "Image build complete"
 }
 
 def pushToImage(openshiftIP, projectName, containerName, tag, dockerUser, dockerPassword){
-    sh "docker login -u $dockerUser -p $dockerPassword $openshiftIP"
-    sh "docker tag $containerName:$tag $openshiftIP/$projectName/$containerName:$tag"
-    sh "docker push $openshiftIP/$projectName/$containerName:$tag"
+    bat "docker login -u $dockerUser -p $dockerPassword $openshiftIP"
+    bat "docker tag $containerName:$tag $openshiftIP/$projectName/$containerName:$tag"
+    bat "docker push $openshiftIP/$projectName/$containerName:$tag"
     echo "Image push complete to OpenShift"
 }
