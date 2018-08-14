@@ -8,7 +8,7 @@ node {
     stage('Initialize'){
         def dockerHome = tool 'ATIS-Docker'
         def mavenHome  = tool 'ATIS-Maven'
-        env.PATH = "${dockerHome}/resources/bin:${mavenHome}/bin:${env.PATH}"
+        env.PATH = "${dockerHome}\\resources\\bin:${mavenHome}\\bin:${env.PATH}"
     }
 
     stage('Checkout') {
