@@ -34,19 +34,19 @@ node {
 
 def imagePrune(containerName){
     try {
-        bat "C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker image prune -f"
-        bat "C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker stop $containerName"
+        bat "\"C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker\" image prune -f"
+        bat "\"C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker\" stop $containerName"
     } catch(error){}
 }
 
 def imageBuild(containerName, tag){
-    bat "C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
+    bat "\"C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker\" build -t $containerName:$tag  -t $containerName --pull --no-cache ."
     echo "Image build complete"
 }
 
 def pushToImage(openshiftIP, projectName, containerName, tag, dockerUser, dockerPassword){
-    bat "v login -u $dockerUser -p $dockerPassword $openshiftIP"
-    bat "C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker tag $containerName:$tag $openshiftIP/$projectName/$containerName:$tag"
-    bat "C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker push $openshiftIP/$projectName/$containerName:$tag"
+    bat "\"C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker\" login -u $dockerUser -p $dockerPassword $openshiftIP"
+    bat "\"C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker\" tag $containerName:$tag $openshiftIP/$projectName/$containerName:$tag"
+    bat "\"C:\\Program Files\\Docker\\Docker\\Resources\\bin\\docker\" push $openshiftIP/$projectName/$containerName:$tag"
     echo "Image push complete to OpenShift"
 }
