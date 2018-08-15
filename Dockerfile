@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
+RUN npm i npm@latest -g
+
 RUN npm install
 
 # Bundle app source
