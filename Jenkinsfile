@@ -21,6 +21,7 @@ node {
 
     stage("Image Prune"){
         imagePrune(CONTAINER_NAME)
+        imagePrune(CONTAINER_DB_NAME)
     }
 
     stage('DB Image Build'){
