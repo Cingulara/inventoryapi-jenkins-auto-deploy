@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm i npm@latest -g && npm install
+RUN npm i npm@latest -g && npm install express && npm install
 
 # copy all application source directories
 COPY *.js ./
@@ -17,7 +17,7 @@ COPY *.json ./
 COPY public/ public/
 COPY routes/ routes/
 COPY views/ views/
-# COPY bin/ bin/
+COPY bin/ bin/
 
 EXPOSE 8080
 
