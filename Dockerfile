@@ -17,7 +17,7 @@ COPY *.json ./
 COPY public/ public/
 COPY routes/ routes/
 COPY views/ views/
-COPY bin/ bin/
+# COPY bin/ bin/
 
 EXPOSE 8080
 
