@@ -1,14 +1,14 @@
 version : '3'
  
 services:
-  inventoryapi:
-    image: inventoryapi
+  inventory-api-pipeline:
+    image: inventory-api-pipeline
     ports:
       - 9002:8080
     depends_on:
-      - inventoryapidb
+      - inventory-api-db-pipeline
   
-  inventoryapidb:
-    image: inventoryapidb
+  inventory-api-db-pipeline:
+    image: inventory-api-db-pipeline
     ports:
       - 5432
