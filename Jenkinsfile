@@ -11,13 +11,13 @@ node {
         checkout scm
     }
 
-    stage('SonarQube'){
+    /*stage('SonarQube'){
         try {
             bat "c:\\projects\\sonar-scanner\\bin\\sonar-scanner -Dsonar.projectKey=inventoryapi -Dsonar.sources=."
         } catch(error){
             echo "The sonar server could not be reached ${error}"
         }
-     }
+     }*/
 
     stage("Image Prune"){
         imagePrune(CONTAINER_NAME)
@@ -32,6 +32,14 @@ node {
         imageBuild(CONTAINER_NAME, CONTAINER_TAG, ".")
     }
 
+    stage('Aqua MicroScanner for DB Image'){
+        aquaMicroscanner imageName: CONTAINER_DB_NAME, notCompliesCmd: 'exit 1', onDisallowed: 'fail'
+    }
+
+    stage('Aqua MicroScanner for App Image'){
+        aquaMicroscanner imageName: CONTAINER_NAME, notCompliesCmd: 'exit 1', onDisallowed: 'fail'
+    }
+    
     stage('Push DB to OpenShift Registry'){
         withCredentials([usernamePassword(credentialsId: 'openshift-docker-registry-account', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             pushToImage(OPENSHIFT_IP,OPENSHIFT_PROJECT_NAME, CONTAINER_DB_NAME, CONTAINER_DB_TAG, USERNAME, PASSWORD)
