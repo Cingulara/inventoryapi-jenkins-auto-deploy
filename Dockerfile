@@ -4,6 +4,8 @@ FROM node:8
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+RUN apt-get -y install ca-certificates
+
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
